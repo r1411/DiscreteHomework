@@ -14,13 +14,17 @@ public class Main {
         System.out.println("Введите число k: ");
         int k = scan.nextInt();
 
-        List<String> repArrs = Combinatorics.repeatableArrangements(elements, k);
-        repArrs.add("Всего: " + repArrs.size());
+        List<List<String>> repArrs = Combinatorics.repeatableArrangements(elements, k);
         writeToFile(repArrs, "task1_1.txt");
     }
 
-    private static void writeToFile(List<String> lines, String fileName) {
+    private static void writeToFile(List<List<String>> objects, String fileName) {
         File file = new File(fileName);
+        List<String> lines = new ArrayList<>();
+        lines.add("Всего объектов: " + objects.size());
+        for(List<String> object : objects) {
+            lines.add(object.toString());
+        }
         try {
             Files.write(file.toPath(), lines);
         } catch (IOException e) {
