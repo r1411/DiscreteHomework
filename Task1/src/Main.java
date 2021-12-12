@@ -14,9 +14,9 @@ public class Main {
         System.out.println("Введите число k: ");
         int k = scan.nextInt();
 
-        List<String> repPerms = Combinatorics.RepeatablePermutations(elements, k);
-        repPerms.add("Всего: " + repPerms.size());
-        writeToFile(repPerms, "task1_1.txt");
+        List<String> repArrs = Combinatorics.repeatableArrangements(elements, k);
+        repArrs.add("Всего: " + repArrs.size());
+        writeToFile(repArrs, "task1_1.txt");
     }
 
     private static void writeToFile(List<String> lines, String fileName) {

@@ -9,7 +9,7 @@ public class Combinatorics {
      * @param elements Множество элементов
      * @param k По сколько элементов размещать
      */
-    public static List<String> RepeatablePermutations(List<String> elements, int k) {
+    public static List<String> repeatableArrangements(List<String> elements, int k) {
         List<String> result = new ArrayList<>();
         int n = elements.size();
 
