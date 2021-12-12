@@ -35,4 +35,29 @@ public class Combinatorics {
         }
         return result;
     }
+
+    /**
+     * Возвращает все возможные перестановки из переданных элементов
+     *
+     * @param elements Список элементов
+     */
+    public static <E> List<List<E>> permutations(List<E> elements) {
+        if (elements.size() == 0) {
+            List<List<E>> result = new ArrayList<>();
+            result.add(new ArrayList<>());
+            return result;
+        }
+        E element = elements.get(0);
+        elements = elements.subList(1, elements.size());
+        List<List<E>> result = new ArrayList<>();
+        List<List<E>> perms = permutations(elements);
+        for (List<E> perm : perms) {
+            for (int index = 0; index <= perm.size(); index++) {
+                List<E> temp = new ArrayList<>(perm);
+                temp.add(index, element);
+                result.add(temp);
+            }
+        }
+        return result;
+    }
 }

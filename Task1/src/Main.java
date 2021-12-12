@@ -16,6 +16,9 @@ public class Main {
 
         List<List<String>> repArrs = Combinatorics.repeatableArrangements(elements, k);
         writeToFile(repArrs, "task1_1.txt");
+
+        List<List<String>> perms = Combinatorics.permutations(elements);
+        writeToFile(perms, "task1_2.txt");
     }
 
     private static void writeToFile(List<List<String>> objects, String fileName) {
