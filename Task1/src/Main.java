@@ -25,6 +25,9 @@ public class Main {
 
         List<List<String>> powerSet = Combinatorics.powerSet(elements);
         writeToFile(powerSet, "task1_4.txt");
+
+        List<List<String>> combinations = Combinatorics.combinations(elements, k);
+        writeToFile(combinations, "task1_5.txt");
     }
 
     private static void writeToFile(List<List<String>> objects, String fileName) {
