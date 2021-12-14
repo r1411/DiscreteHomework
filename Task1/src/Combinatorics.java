@@ -129,4 +129,36 @@ public class Combinatorics {
 
         return result;
     }
+
+    /**
+     * Возвращает все сочетания по k с повторениями
+     *
+     * @param elements Множество элементов
+     * @param k По сколько сочетать
+     */
+    public static <T> List<List<T>> repeatableCombinations(List<T> elements, int k) {
+        if (k == 0) {
+            List<List<T>> result = new ArrayList<>();
+            result.add(new ArrayList<>());
+            return result;
+        }
+
+        if (elements.size() == 0) {
+            return new ArrayList<>();
+        }
+
+        List<List<T>> combinations = new ArrayList<>();
+
+        T element = elements.get(0);
+        List<List<T>> subCombs = repeatableCombinations(elements, k - 1);
+        for (List<T> subComb : subCombs) {
+            subComb.add(0, element);
+            combinations.add(subComb);
+        }
+
+        elements = elements.subList(1, elements.size());
+        combinations.addAll(repeatableCombinations(elements, k));
+
+        return combinations;
+    }
 }

@@ -28,6 +28,9 @@ public class Main {
 
         List<List<String>> combinations = Combinatorics.combinations(elements, k);
         writeToFile(combinations, "task1_5.txt");
+
+        List<List<String>> repCombs = Combinatorics.repeatableCombinations(elements, k);
+        writeToFile(repCombs, "task1_6.txt");
     }
 
     private static void writeToFile(List<List<String>> objects, String fileName) {
