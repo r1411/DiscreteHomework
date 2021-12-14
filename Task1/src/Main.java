@@ -22,6 +22,9 @@ public class Main {
 
         List<List<String>> arrs = Combinatorics.arrangements(elements, k);
         writeToFile(arrs, "task1_3.txt");
+
+        List<List<String>> powerSet = Combinatorics.powerSet(elements);
+        writeToFile(powerSet, "task1_4.txt");
     }
 
     private static void writeToFile(List<List<String>> objects, String fileName) {

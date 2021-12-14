@@ -114,4 +114,19 @@ public class Combinatorics {
         }
         return result ;
     }
+
+    /**
+     * Возвращает все подмножества множества elements (т. е. его булеан)
+     *
+     * @param elements Элементы
+     */
+    public static <T> List<List<T>> powerSet(List<T> elements) {
+        List<List<T>> result = new ArrayList<>();
+
+        for (int i = 0; i <= elements.size(); i++) {
+            result.addAll(combinations(elements, i));
+        }
+
+        return result;
+    }
 }
