@@ -1,7 +1,4 @@
-import combobjects.CombObject;
-import combobjects.KPerms;
-import combobjects.KPermsWithReps;
-import combobjects.Permutations;
+import combobjects.*;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -67,8 +64,18 @@ public class Main {
         List<List<Character>> powerSet = Combinatorics.powerSet(elements);
         writeToFile(powerSet, "task1_4.txt");
 
-        List<List<Character>> combinations = Combinatorics.combinations(elements, k);
-        writeToFile(combinations, "task1_5.txt");
+        try {
+            FileWriter task1Writer = new FileWriter("task1_5.txt");
+            Combinations obj5 = new Combinations(elements, k);
+            writeToFile(obj5, task1Writer);
+            while(obj5.hasNext()) {
+                obj5.next();
+                writeToFile(obj5, task1Writer);
+            }
+            task1Writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         List<List<Character>> repCombs = Combinatorics.repeatableCombinations(elements, k);
         writeToFile(repCombs, "task1_6.txt");
