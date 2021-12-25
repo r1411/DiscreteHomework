@@ -1,4 +1,3 @@
-Всего объектов: 1250
 aabbb
 aabbc
 aabbd

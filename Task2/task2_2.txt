@@ -1,4 +1,3 @@
-Всего объектов: 600
 aabcd
 aabce
 aabcf
