@@ -13,6 +13,10 @@ public class Permutations extends CombObject {
         super(alphabet);
     }
 
+    Permutations(List<Character> alphabet, List<Character> currentObj) {
+        super(alphabet, currentObj, 0);
+    }
+
     @Override
     public boolean hasNext() {
         int n = this.getCurrentObj().size();

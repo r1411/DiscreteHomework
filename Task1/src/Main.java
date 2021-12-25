@@ -1,4 +1,5 @@
 import combobjects.CombObject;
+import combobjects.KPerms;
 import combobjects.KPermsWithReps;
 import combobjects.Permutations;
 
@@ -50,8 +51,18 @@ public class Main {
             e.printStackTrace();
         }
 
-        List<List<Character>> arrs = Combinatorics.arrangements(elements, k);
-        writeToFile(arrs, "task1_3.txt");
+        try {
+            FileWriter task1Writer = new FileWriter("task1_3.txt");
+            KPerms obj3 = new KPerms(elements, k);
+            writeToFile(obj3, task1Writer);
+            while(obj3.hasNext()) {
+                obj3.next();
+                writeToFile(obj3, task1Writer);
+            }
+            task1Writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         List<List<Character>> powerSet = Combinatorics.powerSet(elements);
         writeToFile(powerSet, "task1_4.txt");
