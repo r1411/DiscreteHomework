@@ -61,8 +61,18 @@ public class Main {
             e.printStackTrace();
         }
 
-        List<List<Character>> powerSet = Combinatorics.powerSet(elements);
-        writeToFile(powerSet, "task1_4.txt");
+        try {
+            FileWriter task1Writer = new FileWriter("task1_4.txt");
+            Powerset obj4 = new Powerset(elements);
+            writeToFile(obj4, task1Writer);
+            while(obj4.hasNext()) {
+                obj4.next();
+                writeToFile(obj4, task1Writer);
+            }
+            task1Writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         try {
             FileWriter task1Writer = new FileWriter("task1_5.txt");
