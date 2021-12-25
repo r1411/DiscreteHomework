@@ -7,13 +7,13 @@ import java.util.List;
 /**
  * Генератор перестановок
  */
-public class Permutations extends CombObject {
+public class Permutations<T extends Comparable<T>> extends CombObject<T> {
 
-    public Permutations(List<Character> alphabet) {
+    public Permutations(List<T> alphabet) {
         super(alphabet);
     }
 
-    Permutations(List<Character> alphabet, List<Character> currentObj) {
+    Permutations(List<T> alphabet, List<T> currentObj) {
         super(alphabet, currentObj, 0);
     }
 
@@ -30,14 +30,14 @@ public class Permutations extends CombObject {
 
     @Override
     public void next() {
-        List<Character> obj = this.getCurrentObj();
+        List<T> obj = this.getCurrentObj();
 
         for (int i = obj.size() - 2; i >= 0; i--) {
-            if (obj.get(i) < obj.get(i + 1)) {
-                char min_val = obj.get(i + 1);
+            if (obj.get(i).compareTo(obj.get(i + 1)) < 0) {
+                T min_val = obj.get(i + 1);
                 int min_id = i + 1;
                 for (int j = i + 2; j < obj.size(); j++) {
-                    if (obj.get(j) > obj.get(i) && obj.get(j) < min_val) {
+                    if (obj.get(j).compareTo(obj.get(i)) > 0 && obj.get(j).compareTo(min_val) < 0) {
                         min_val = obj.get(j);
                         min_id = j;
                     }
@@ -50,7 +50,7 @@ public class Permutations extends CombObject {
     }
 
     @Override
-    protected List<Character> getFirstObject() {
+    protected List<T> getFirstObject() {
         return new ArrayList<>(this.getAlphabet());
     }
 }

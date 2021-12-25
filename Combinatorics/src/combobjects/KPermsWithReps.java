@@ -7,9 +7,9 @@ import java.util.List;
 /**
  * Генератор размещений с повторениями
  */
-public class KPermsWithReps extends CombObject {
+public class KPermsWithReps<T extends Comparable<T>> extends CombObject<T> {
 
-    public KPermsWithReps(List<Character> alphabet, int k) {
+    public KPermsWithReps(List<T> alphabet, int k) {
         super(alphabet, k);
     }
 
@@ -18,9 +18,9 @@ public class KPermsWithReps extends CombObject {
         if (this.getAlphabet().size() == 0)
             return false;
 
-        char lastLetter = this.getAlphabet().get(this.getAlphabet().size() - 1);
+        T lastLetter = this.getAlphabet().get(this.getAlphabet().size() - 1);
 
-        for (char c : this.getCurrentObj()) {
+        for (T c : this.getCurrentObj()) {
             if (c != lastLetter)
                 return true;
         }
@@ -30,12 +30,12 @@ public class KPermsWithReps extends CombObject {
 
     @Override
     public void next() {
-        char firstLetter = this.getAlphabet().get(0);
-        char lastLetter = this.getAlphabet().get(this.getAlphabet().size() - 1);
+        T firstLetter = this.getAlphabet().get(0);
+        T lastLetter = this.getAlphabet().get(this.getAlphabet().size() - 1);
 
-        List<Character> currentObj = this.getCurrentObj();
+        List<T> currentObj = this.getCurrentObj();
         int i = currentObj.size() - 1;
-        while (currentObj.get(i) == lastLetter) {
+        while (currentObj.get(i).equals(lastLetter)) {
             currentObj.set(i, firstLetter);
             i--;
         }
@@ -45,12 +45,12 @@ public class KPermsWithReps extends CombObject {
     }
 
     @Override
-    protected List<Character> getFirstObject() {
+    protected List<T> getFirstObject() {
         if (this.getAlphabet().size() == 0)
             return Collections.emptyList();
 
-        List<Character> obj = new ArrayList<>(this.getK());
-        char firstLetter = getAlphabet().get(0);
+        List<T> obj = new ArrayList<>(this.getK());
+        T firstLetter = getAlphabet().get(0);
         for (int i = 0; i < this.getK(); i++) {
             obj.add(firstLetter);
         }

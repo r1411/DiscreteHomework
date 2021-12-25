@@ -3,9 +3,9 @@ package combobjects;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Combinations extends CombObject {
+public class Combinations<T extends Comparable<T>> extends CombObject<T> {
 
-    public Combinations(List<Character> alphabet, int k) {
+    public Combinations(List<T> alphabet, int k) {
         super(alphabet, k);
     }
 
@@ -14,9 +14,9 @@ public class Combinations extends CombObject {
         if(this.getK() == 0)
             return false;
 
-        List<Character> obj = this.getCurrentObj();
+        List<T> obj = this.getCurrentObj();
         int pos = obj.size() - 1;
-        while (obj.get(pos) >= this.getAlphabet().get(this.getAlphabet().size() - this.getK() + pos)) {
+        while (obj.get(pos).compareTo(this.getAlphabet().get(this.getAlphabet().size() - this.getK() + pos)) >= 0) {
             pos -= 1;
             if(pos < 0)
                 return false;
@@ -26,14 +26,14 @@ public class Combinations extends CombObject {
 
     @Override
     public void next() {
-        List<Character> obj = this.getCurrentObj();
+        List<T> obj = this.getCurrentObj();
 
         int pos = obj.size() - 1;
-        while (obj.get(pos) >= this.getAlphabet().get(this.getAlphabet().size() - this.getK() + pos)) {
+        while (obj.get(pos).compareTo(this.getAlphabet().get(this.getAlphabet().size() - this.getK() + pos)) >= 0) {
             pos -= 1;
         }
 
-        char ch = obj.get(pos);
+        T ch = obj.get(pos);
         int alphabetIndex = this.getAlphabet().indexOf(ch);
 
         for (int i = pos; i < obj.size(); i++) {
@@ -43,8 +43,8 @@ public class Combinations extends CombObject {
     }
 
     @Override
-    protected List<Character> getFirstObject() {
-        List<Character> obj = new ArrayList<>(this.getK());
+    protected List<T> getFirstObject() {
+        List<T> obj = new ArrayList<>(this.getK());
         for (int i = 0; i < this.getK(); i++) {
             obj.add(this.getAlphabet().get(i));
         }

@@ -2,24 +2,24 @@ package combobjects;
 
 import java.util.List;
 
-public abstract class CombObject {
-    private final List<Character> alphabet;
-    private List<Character> currentObj;
+public abstract class CombObject<T extends Comparable<T>> {
+    private final List<T> alphabet;
+    private List<T> currentObj;
     private final int k;
 
     // Конструктор для объектов, не требующих k
-    public CombObject(List<Character> alphabet) {
+    public CombObject(List<T> alphabet) {
         this(alphabet,0);
     }
 
-    public CombObject(List<Character> alphabet, int k) {
+    public CombObject(List<T> alphabet, int k) {
         this.alphabet = alphabet;
         this.k = k;
         this.currentObj = this.getFirstObject();
     }
 
     // Конструктор для создания конкретного комб. объекта
-    CombObject(List<Character> alphabet, List<Character> currentObj, int k) {
+    CombObject(List<T> alphabet, List<T> currentObj, int k) {
         this.alphabet = alphabet;
         this.currentObj = currentObj;
         this.k = k;
@@ -27,17 +27,17 @@ public abstract class CombObject {
 
     public abstract boolean hasNext();
     public abstract void next();
-    protected abstract List<Character> getFirstObject();
+    protected abstract List<T> getFirstObject();
 
-    public List<Character> getAlphabet() {
+    public List<T> getAlphabet() {
         return alphabet;
     }
 
-    public List<Character> getCurrentObj() {
+    public List<T> getCurrentObj() {
         return currentObj;
     }
 
-    public void setCurrentObj(List<Character> obj) {
+    public void setCurrentObj(List<T> obj) {
         this.currentObj = obj;
     }
 

@@ -21,15 +21,15 @@ public class Main {
         System.out.println("Введите число k: ");
         int k = scan.nextInt();
 
-        writeAllObjectsToFile(new KPermsWithReps(elements, k), "task1_1.txt");
-        writeAllObjectsToFile(new Permutations(elements), "task1_2.txt");
-        writeAllObjectsToFile(new KPerms(elements, k), "task1_3.txt");
-        writeAllObjectsToFile(new Powerset(elements), "task1_4.txt");
-        writeAllObjectsToFile(new Combinations(elements, k), "task1_5.txt");
-        writeAllObjectsToFile(new CombinationsWithReps(elements, k), "task1_6.txt");
+        writeAllObjectsToFile(new KPermsWithReps<>(elements, k), "task1_1.txt");
+        writeAllObjectsToFile(new Permutations<>(elements), "task1_2.txt");
+        writeAllObjectsToFile(new KPerms<>(elements, k), "task1_3.txt");
+        writeAllObjectsToFile(new Powerset<>(elements), "task1_4.txt");
+        writeAllObjectsToFile(new Combinations<>(elements, k), "task1_5.txt");
+        writeAllObjectsToFile(new CombinationsWithReps<>(elements, k), "task1_6.txt");
     }
 
-    private static void writeAllObjectsToFile(CombObject obj, String filename) {
+    private static void writeAllObjectsToFile(CombObject<?> obj, String filename) {
         try {
             FileWriter writer = new FileWriter(filename);
             writer.write(obj.getCurrentObj().toString() + System.lineSeparator());

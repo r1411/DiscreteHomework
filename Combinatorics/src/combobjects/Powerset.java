@@ -6,11 +6,11 @@ import java.util.List;
 /**
  * Генератор всех подмножеств множества (булеан)
  */
-public class Powerset extends CombObject {
+public class Powerset<T extends Comparable<T>> extends CombObject<T> {
     private int currentPower;
-    private Combinations combs;
+    private Combinations<T> combs;
 
-    public Powerset(List<Character> alphabet) {
+    public Powerset(List<T> alphabet) {
         super(alphabet);
     }
 
@@ -25,15 +25,15 @@ public class Powerset extends CombObject {
             this.combs.next();
         } else {
             currentPower += 1;
-            this.combs = new Combinations(this.getAlphabet(), currentPower);
+            this.combs = new Combinations<>(this.getAlphabet(), currentPower);
         }
         this.setCurrentObj(combs.getCurrentObj());
     }
 
     @Override
-    protected List<Character> getFirstObject() {
+    protected List<T> getFirstObject() {
         this.currentPower = 0;
-        this.combs = new Combinations(this.getAlphabet(), 0);
+        this.combs = new Combinations<>(this.getAlphabet(), 0);
         return Collections.emptyList();
     }
 }
